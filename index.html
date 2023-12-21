@@ -1,145 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@600&family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="reset.css" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Gerador de Senha</title>
-  </head>
-  <body>
+    <link rel="stylesheet" href="/reset.css">
+    <link rel="stylesheet" href="/style.css">
+    
+    <title>Gerador de senha forte</title>
+</head>
+<body>
     <main>
-      <section class="hero">
-        <h1 class="title">Gerador de senha</h1>
-        <p class="subtitle">
-          Utilize o nosso gerador online para criar uma senha forte e segura.
-        </p>
-      </section>
+        <section class="hero">
+            <h1 class="title">Gerador de Senha</h1>
+            <p class="subtitle">Utilize o nosso gerador online para criar uma senha forte e segura</p>
+        </section>
+        
+        
+        <section class="box">
+            <div class="password">
+                <div class="text">
+                    <input type="text" name="password" id="password">
+                </div>
+                <div class="actions">
+                    <button id="copy-1">
+                        <img src="/copy.svg" width="42" alt="copiar">
+                    </button>
+                    <button id="renew">
+                        <img src="/renew.svg" width="42" alt="renovar">
+                    </button>
+                </div>
+            </div>
+            <div class="security-indicator">
+                <div id="security-indicator-bar" class="bar safe"></div>
+            </div>
+        </section>
 
-      <section class="box">
-        <div class="password">
-          <div class="text">
-            <input type="text" name="password" id="password" />
-          </div>
-          <div class="actions">
-            <button id="copy-1">
-              <img src="copy.svg" width="42" />
-            </button>
-            <button id="renew">
-              <img src="renew.svg" width="42" />
-            </button>
-          </div>
+        <section class="box costumize">
+            
+            <h3 class="title">Personalizar</h1>
+            
+            <div class="actions">
+                <div class="password-lenght">
+                    <p>Tamanho: 
+                        <span id="password-lenght-text">16</span> <!-- Span para criar o elemento dentro do DOM -->
+                    </p>
+
+                    <input 
+                        type="range" 
+                        name="password-lenght" 
+                        id="password-lenght"
+                        class="slider"
+                        value="16" 
+                        min="4" 
+                        max="64" 
+                    />
+                </div>
+
+                <div class="config">
+                    
+                    <label class="checkbox-container">
+                        <span class="text">Maiúsculas</span>
+                        <input type="checkbox" id="uppercase-check" checked>
+                        <span class="checkmark"></span>
+                    </label>
+
+                    <label class="checkbox-container">
+                        <span class="number">Números</span>
+                        <input type="checkbox" id="number-check" checked>
+                        <span class="checkmark"></span>
+                    </label>
+
+                    <label class="checkbox-container">
+                        <span class="symbol">Símbolos</span>
+                        <input type="checkbox" id="symbol-check" checked>
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <div class="submit">
+            <button id="copy-2">Copiar senha</button>
         </div>
-        <div class="security-indicator">
-          <div id="security-indicator-bar" class="bar" style="width: 90%"></div>
-        </div>
-      </section>
 
-      <section class="box customize">
-        <h3 class="title">Personalizar</h3>
-        <div class="actions">
-          <div class="password-length">
-            <p>Tamanho: <span id="password-length-text">16</span></p>
-            <input
-              type="range"
-              name="password-length"
-              id="password-length"
-              class="slider"
-              value="16"
-              min="4"
-              max="64"
-            />
-          </div>
-          <div class="config">
-            <label class="checkbox-container">
-              <span class="text">Maiúsculas</span>
-              <input type="checkbox" id="uppercase-check" checked />
-              <span class="checkmark"></span>
-            </label>
-            <label class="checkbox-container">
-              <span class="text">Números</span>
-              <input type="checkbox" id="number-check" checked />
-              <span class="checkmark"></span>
-            </label>
-            <label class="checkbox-container">
-              <span class="text">Símbolos</span>
-              <input type="checkbox" id="symbol-check" checked />
-              <span class="checkmark"></span>
-            </label>
-          </div>
-        </div>
-      </section>
+        </main>
+        <script>
+            let passwordLenght = 16
+            const inputEL = document.querySelector("#password")
+            const upperCaseCheckEl = document.querySelector("#uppercase-check") //Capturei o botão
+            const numberCheckEl = document.querySelector("#number-check")
+            const symbolCheckEl = document.querySelector("#symbol-check")
+            const securityIndicatorBarEL = document.querySelector("#security-indicator-bar")
 
-      <div class="submit">
-      <button id="copy-2">Copiar senha</button>
-      </div>
-    </main>
+            function generatePassword () {
+                let chars = "abcdefghjkmnpqrstuvwxyz"
+                
+                const upperCaseChars = "ABCDEFGHJKMNPQRSTUVWXYZ"
+                const numberChars = "123456789"
+                const symbolchars = "?!@&*()[]"
 
-    <script>
-      const inputEl = document.querySelector("#password")
-      const upperCaseCheckEl = document.querySelector('#uppercase-check')
-      const numberCheckEl = document.querySelector('#number-check')
-      const symbolCheckEl = document.querySelector('#symbol-check')
+                if (upperCaseCheckEl.checked) { //Se o botão estiver checked
+                    chars += upperCaseChars} //Adicionar upperCases
+                if(numberCheckEl.checked) {
+                    chars += numberChars}
+                if(symbolCheckEl.checked) {
+                    chars += symbolchars}
 
-      let passwordLength = 16
+                let password = ""
 
-      function generatePassword() {
-        let chars =
-          "abcdefghjkmnpqrstuvwxyz"
-        const upperCaseChars = "ABCDEFGHJKLMNPQRSTUVWXYZ"
-        const numberChars = "123456789"
-        const symbolChars = "?!@&*()[]"
+                // Criar um looping que vai percorrer x vezes, onde x será o tamanho da nossa password e, a cada vez que efetuar o looping vai sortear um caracter do chars
 
-        if (upperCaseCheckEl.checked) {
-          chars += upperCaseChars}
-        if (numberCheckEl.checked) {
-          chars += numberChars}
-        if (symbolCheckEl.checked) {
-          chars += symbolChars}
-      
+                for (let i = 0; i < passwordLenght; i++ ) {
+                    const randomNumber = Math.floor(Math.random() * chars.length)
+                    // Função substring faz um recorte, no caso, no consjunto 'chars' e precisa de dois parametros, começo e quantos caracteres serem recortados. Onde o começo será o 'randomNumber' e o recorte será 'randomNumber + 1'
+                    password += chars.substring(randomNumber, randomNumber + 1)
+                }
 
-        let password = ""
-          
-          console.log("Math.random=", Math.random())
-          console.log("chars.length=", chars.length)
-          console.log("Math.random*chars.length=", Math.random()*chars.length)
-          console.log("Math.floor(Math.random*chars.length=)", Math.floor(Math.random()*chars.length))
-          console.log("randomNumber", Math.floor(Math.random()*chars.length))
-          console.log(chars.substring(Math.floor(Math.random()*chars.length), Math.floor(Math.random()*chars.length)+1))
+                //inserindo a password aleatória no campo do input 'password'
+                inputEL.value = password
+                calculateSafety ()
+                }
+            
+            function calculateSafety () {
+                
+                const percent = Math.round((passwordLenght / 64) * 100)
 
-        for (let i = 0; i < passwordLength; i++) {
-          const randomNumber = Math.floor(Math.random() * chars.length)
-          password += chars.substring(randomNumber, randomNumber + 1)
-        }
+                securityIndicatorBarEL.style.width = `${percent}%`
+            }
+            
+            // Função para copiar texto 'writeText' do elemento 'inputEL'
+            function copy () {
+                navigator.clipboard.writeText(inputEL.value)
 
-        inputEl.value = password
-      }
+            }
 
-      function copy() {
-        navigator.clipboard.writeText(inputEl.value)
-      }
+            //Para capturar o valor do input 'password-length'
+            const passwordLenghtEl = document.querySelector("#password-lenght")
 
-      const passwordLengthEl = document.querySelector("#password-length")
-      passwordLengthEl.addEventListener("input", function () {
-        passwordLength = passwordLengthEl.value
-        document.querySelector('#password-length-text').innerText = passwordLength
-        generatePassword()
-      })
-      
-      upperCaseCheckEl.addEventListener('click', generatePassword)
-      numberCheckEl.addEventListener('click', generatePassword)
-      symbolCheckEl.addEventListener('click', generatePassword)
+            //Para adicionar o evento de arrastar
+            passwordLenghtEl.addEventListener("input", function() {
+                passwordLenght = passwordLenghtEl.value
+                document.querySelector("#password-lenght-text").innerHTML = passwordLenght
 
+                generatePassword()
+            })
+            
+            upperCaseCheckEl.addEventListener('click', generatePassword)
+            numberCheckEl.addEventListener('click', generatePassword)
+            symbolCheckEl.addEventListener('click', generatePassword)
+            
+            document.querySelector('#copy-1').addEventListener("click", copy)
+            document.querySelector('#copy-2').addEventListener("click", copy)
 
-      document.querySelector("#copy-1").addEventListener("click", copy)
-      document.querySelector("#copy-2").addEventListener("click", copy)
-
-      generatePassword()
-    </script>
-
-  </body>
+            generatePassword()
+        </script>
+</body>
 </html>
