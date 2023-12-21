@@ -75,6 +75,7 @@ main {
 }
 .security-indicator .bar.completed {
     border-top-right-radius: 0;
+    background-color: #27ae60;
 }
 .security-indicator .bar.critical {
     background-color: #eb5757;
