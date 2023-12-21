@@ -208,3 +208,24 @@ main {
 .submit button:hover {  /* Ao passar o cursor*/
     background-color: #9b51e0;
 }
+
+@media only screen and (max-width: 480px) {
+    .password {
+        padding: 1rem;
+    }
+    .password .text input{
+        font-size: 1.5rem;
+    }
+    .password .text input.m {
+        font-size: 1.2rem
+    }
+    .password .text input.s {
+        font-size: 1rem
+    }
+    .password .text input.xs {
+        font-size: 1rem
+    }
+    .password .actions img {
+        width: 24px;
+    }
+}

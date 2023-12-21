@@ -93,6 +93,7 @@
             const upperCaseCheckEl = document.querySelector("#uppercase-check") //Capturei o botão
             const numberCheckEl = document.querySelector("#number-check")
             const symbolCheckEl = document.querySelector("#symbol-check")
+            const renewButtonEL = document.querySelector("#renew")
             const securityIndicatorBarEL = document.querySelector("#security-indicator-bar")
 
             function generatePassword () {
@@ -189,9 +190,9 @@
             // Função para copiar texto 'writeText' do elemento 'inputEL'
             function copy () {
                 navigator.clipboard.writeText(inputEL.value)
-
             }
 
+            
             //Para capturar o valor do input 'password-length'
             const passwordLenghtEl = document.querySelector("#password-lenght")
 
@@ -206,7 +207,8 @@
             upperCaseCheckEl.addEventListener('click', generatePassword)
             numberCheckEl.addEventListener('click', generatePassword)
             symbolCheckEl.addEventListener('click', generatePassword)
-            
+            renewButtonEL.addEventListener('click', generatePassword)
+
             document.querySelector('#copy-1').addEventListener("click", copy)
             document.querySelector('#copy-2').addEventListener("click", copy)
 
