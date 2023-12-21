@@ -122,6 +122,7 @@
                 //inserindo a password aleatória no campo do input 'password'
                 inputEL.value = password
                 calculateSafety ()
+                calculateFontSize ()
                 }
             
             function calculateSafety () {
@@ -161,6 +162,30 @@
                 }
             }
             
+            function calculateFontSize () {
+                if(passwordLenght > 45) {
+                    inputEL.classList.remove("m")
+                    inputEL.classList.remove("s")
+                    inputEL.classList.add("xs")
+                }
+                else if (passwordLenght > 33) {
+                    inputEL.classList.remove("m")
+                    inputEL.classList.add("s")
+                    inputEL.classList.remove("xs")
+                }
+                else if (passwordLenght > 23) {
+                    inputEL.classList.add("m")
+                    inputEL.classList.remove("s")
+                    inputEL.classList.remove("xs")
+                }
+                else{
+                    inputEL.classList.remove("m")
+                    inputEL.classList.remove("s")
+                    inputEL.classList.remove("xs")
+                }
+                
+            }
+
             // Função para copiar texto 'writeText' do elemento 'inputEL'
             function copy () {
                 navigator.clipboard.writeText(inputEL.value)

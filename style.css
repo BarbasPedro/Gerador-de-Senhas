@@ -52,6 +52,15 @@ main {
     -ms-user-select: none;
     user-select: none;
 }
+.password .text input.m{
+    font-size: 2rem;
+}
+.password .text input.s{
+    font-size: 1.5rem;
+}
+.password .text input.xs{
+    font-size: 1rem;
+}
 .password .actions button {
     background-color: transparent;
     border: none;
